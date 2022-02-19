@@ -179,8 +179,8 @@ add_hook('AdminProductConfigFieldsSave', 1, function($vars) {
             $configidBackup = kametera_addConfigOption($gid, "backup | Backup");
             
             //data entry for backup options
-            kametera_addConfigOptionSub($configidBackup, "yes");
             kametera_addConfigOptionSub($configidBackup, "no");
+            kametera_addConfigOptionSub($configidBackup, "yes");
 
             //loop for Snapshots
             for ($i = 0 ; $i <= 4 ; $i++)
