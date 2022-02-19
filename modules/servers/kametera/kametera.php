@@ -572,6 +572,11 @@ function kametera_TestConnection(array $params)
 
         if ($status == 200)
         {
+            $credentials = '{"clientId": "' . $clientId . '", "secret": "' . $secret . '"}';
+            $fp = fopen(dirname(__FILE__) .'/storage/connection','w'); 
+            fwrite($fp,$credentials);
+            fclose($fp);
+            
             try {
                 $results1 = Capsule::table('information_schema.tables')
                     ->where('table_name', 'tblkamcommands')->first();

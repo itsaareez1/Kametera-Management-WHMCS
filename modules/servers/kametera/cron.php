@@ -17,8 +17,12 @@ require_once __DIR__ . '/../../../init.php';
 require_once 'kametera.php';
 use WHMCS\Database\Capsule;
 
-$clientId = "71593d693646c8bc2353bdca5fd41121";
-$secret = "1b186c2059445013a934fac97a3bf851";
+$conn = file_get_contents(dirname(__FILE__) .'/storage/connection'); 
+$server = json_decode($conn);
+
+$clientId = $server->clientId;
+$secret = $server->secret;
+
 kametera_sync_tables();
 kametera_sync_commands($clientId, $secret);
 kametera_deletePostCreatedSnapshot($clientId, $secret);
