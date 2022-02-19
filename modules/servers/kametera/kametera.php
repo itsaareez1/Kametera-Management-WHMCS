@@ -39,8 +39,8 @@ function kametera_MetaData()
         'RequiresServer' => true, // Set true if module requires a server to work
         'DefaultNonSSLPort' => '1111', // Default Non-SSL Connection Port
         'DefaultSSLPort' => '1112', // Default SSL Connection Port
-        'ServiceSingleSignOnLabel' => 'Login to Panel as User',
-        'AdminSingleSignOnLabel' => 'Login to Panel as Admin',
+        // 'ServiceSingleSignOnLabel' => 'Login to Panel as User',
+        // 'AdminSingleSignOnLabel' => 'Login to Panel as Admin',
     );
 }
 function kametera_setPowerStatus($clientId, $secret, $serverId, $status)

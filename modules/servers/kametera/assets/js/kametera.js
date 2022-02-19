@@ -324,6 +324,14 @@ jQuery(document).ready(function(){
 
     })
     if(window.location.href.indexOf("confproduct") > -1) {
+        window.langPasswordStrength = "{lang key='pwstrength'}";
+        window.langPasswordWeak = "{lang key='pwstrengthweak'}";
+        window.langPasswordModerate = "{lang key='pwstrengthmoderate'}";
+        window.langPasswordStrong = "{lang key='pwstrengthstrong'}";
+        jQuery(document).ready(function() {
+            jQuery("#inputRootpw").keyup(registerFormPasswordStrengthFeedback);
+        });
+    
         jQuery('#btnGeneratePasswordInsert')
         .click(WHMCS.ui.clipboard.copy)
         .click(function(e) {
