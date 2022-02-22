@@ -4751,33 +4751,33 @@ function kametera_AdminServicesTabFieldsSave(array $params)
  *
  * @return array
  */
-function kametera_ServiceSingleSignOn(array $params)
-{
-    try {
-        // Call the service's single sign-on token retrieval function, using the
-        // values provided by WHMCS in `$params`.
-        $response = array();
+// function kametera_ServiceSingleSignOn(array $params)
+// {
+//     try {
+//         // Call the service's single sign-on token retrieval function, using the
+//         // values provided by WHMCS in `$params`.
+//         $response = array();
 
-        return array(
-            'success' => true,
-            'redirectTo' => $response['redirectUrl'],
-        );
-    } catch (Exception $e) {
-        // Record the error in WHMCS's module log.
-        logModuleCall(
-            'kametera',
-            __FUNCTION__,
-            $params,
-            $e->getMessage(),
-            $e->getTraceAsString()
-        );
+//         return array(
+//             'success' => true,
+//             'redirectTo' => $response['redirectUrl'],
+//         );
+//     } catch (Exception $e) {
+//         // Record the error in WHMCS's module log.
+//         logModuleCall(
+//             'kametera',
+//             __FUNCTION__,
+//             $params,
+//             $e->getMessage(),
+//             $e->getTraceAsString()
+//         );
 
-        return array(
-            'success' => false,
-            'errorMsg' => $e->getMessage(),
-        );
-    }
-}
+//         return array(
+//             'success' => false,
+//             'errorMsg' => $e->getMessage(),
+//         );
+//     }
+// }
 
 /**
  * Perform single sign-on for a server.
@@ -4796,33 +4796,33 @@ function kametera_ServiceSingleSignOn(array $params)
  *
  * @return array
  */
-function kametera_AdminSingleSignOn(array $params)
-{
-    try {
-        // Call the service's single sign-on admin token retrieval function,
-        // using the values provided by WHMCS in `$params`.
-        $response = array();
+// function kametera_AdminSingleSignOn(array $params)
+// {
+//     try {
+//         // Call the service's single sign-on admin token retrieval function,
+//         // using the values provided by WHMCS in `$params`.
+//         $response = array();
 
-        return array(
-            'success' => true,
-            'redirectTo' => $response['redirectUrl'],
-        );
-    } catch (Exception $e) {
-        // Record the error in WHMCS's module log.
-        logModuleCall(
-            'kametera',
-            __FUNCTION__,
-            $params,
-            $e->getMessage(),
-            $e->getTraceAsString()
-        );
+//         return array(
+//             'success' => true,
+//             'redirectTo' => $response['redirectUrl'],
+//         );
+//     } catch (Exception $e) {
+//         // Record the error in WHMCS's module log.
+//         logModuleCall(
+//             'kametera',
+//             __FUNCTION__,
+//             $params,
+//             $e->getMessage(),
+//             $e->getTraceAsString()
+//         );
 
-        return array(
-            'success' => false,
-            'errorMsg' => $e->getMessage(),
-        );
-    }
-}
+//         return array(
+//             'success' => false,
+//             'errorMsg' => $e->getMessage(),
+//         );
+//     }
+// }
 /**
  * This function fetches server id
  */
@@ -5064,7 +5064,6 @@ function kametera_ClientArea(array $params)
         }
     }
 
-
         $requestedAction = '';
 
         if (isset($_REQUEST['customAction']))
@@ -5089,15 +5088,23 @@ function kametera_ClientArea(array $params)
             // Call the service's function based on the request action, using the
             // values provided by WHMCS in `$params`.
             $response = array();
-    
-            $extraVariable1 = 'abc';
-            $extraVariable2 = '123';
+            logModuleCall(
+                'kametera',
+                __FUNCTION__,
+                $params["model"]["subscriptionid"],
+                "",
+                ""
+            );
+            $password = $params["password"];
+            
+            $power = kametera_powerStatus($params['serverusername'], $params['serverpassword'],  $params["model"]["subscriptionid"]);
     
             return array(
-                'tabOverviewModuleOutputTemplate' => $templateFile,
+                'tabOverviewReplacementTemplate' => 'templates/manage.tpl',
                 'templateVariables' => array(
-                    'extraVariable1' => $extraVariable1,
-                    'extraVariable2' => $extraVariable2,
+                    'username' => 'root',
+                    'password' => $password,
+                    'power' => $power
                 ),
             );
         } catch (Exception $e) {

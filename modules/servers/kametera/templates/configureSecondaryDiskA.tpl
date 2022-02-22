@@ -36,6 +36,10 @@ input[id="cconfirm"] {
           </li>
         </ul>
         <hr>
+        <a class="btn btn-default" href="clientarea.php?action=productdetails&id={$serviceid}">
+            Back
+        </a>
+
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Proceed
         </button>

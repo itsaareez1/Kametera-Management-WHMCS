@@ -28,6 +28,10 @@ input[id="cconfirm"] {
         <br/>
         <div style="color: red; font-size: 0.8rem;">Caution: This operation will remove all existing snapshots.</div>
         <hr>
+        <a class="btn btn-default" href="clientarea.php?action=productdetails&id={$serviceid}">
+            Back
+        </a>
+
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Proceed
         </button>

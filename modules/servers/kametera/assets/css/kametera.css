@@ -1,0 +1,11 @@
+.kametera-box{
+    border: 1px solid #f0f0f0; 
+    padding: 10px 0;
+    height: 102px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.kametera-box:hover{
+    box-shadow: 3px 2px 9px grey;
+    padding: 10px 0;
+}

@@ -38,6 +38,9 @@ input[id="cconfirm"] {
         <hr>
         <div style="color: red; font-size: 0.8rem;">Caution: To perform this operation, you must have Disk A attached to your server, otherwise, you will not see Disk B size options.</div>
         <hr>
+        <a class="btn btn-default" href="clientarea.php?action=productdetails&id={$serviceid}">
+            Back
+        </a>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Proceed
         </button>

@@ -1,0 +1,327 @@
+/* *****************************************************
+    
+Project: Horn - WHMCS Dashboard Hosting Theme
+Description: Horn Responsive Premium Theme Designed for all web hosting providers
+Author: inebur (Rúben Rodrigues)
+Author URI: http://inebur.com/
+Author Envato: https://themeforest.net/user/inebur
+Copyright: 2020 inebur
+Version: 1.3.1
+
+***************************************************** */
+
+@import url("//fonts.googleapis.com/earlyaccess/droidarabicnaskh.css");
+
+body {
+    direction:rtl;
+}
+html {
+    direction:rtl;
+}
+.btn .w-icon:before {
+    content: "\e934" !important;
+}
+.fa-arrow-circle-right:before {
+    content: "\f0a8" !important;
+}
+.notify-footer .btn .w-icon:before {
+    content: "\e914";
+}
+.notify-footer .btn .w-icon {
+    margin: 0px 0px 0px 5px !important;
+    display: inherit;
+}
+#order-standard_cart .order-summary h2 {
+    text-align: right !important;
+}
+#order-standard_cart .order-summary .total-due-today .amt {
+    text-align: right !important;
+}
+#order-standard_cart .order-summary .total-due-today span {
+    text-align: right !important;
+}
+#order-standard_cart .product-info .list-info .spec {
+    margin-right: 54px !important;
+}
+#order-standard_cart .product-info .list-info span {
+    margin-right: 54px !important;
+}
+#order-standard_cart .product-info .list-info i {
+    margin-right: 0px !important;
+    margin-left: 10px !important;
+}
+#order-standard_cart .product-info .list-info {
+    margin: 0 0 10px 20px !important;
+}
+#order-standard_cart .addon-promo-container .logo {
+    float: left !important;
+}
+#order-standard_cart .account-select-container div.account span.label {
+    left: 15px;
+    right: initial;
+}
+#order-standard_cart .addon-promo-container .logo {
+    margin: 0 40px 0px 5px !important;
+}
+#order-standard_cart .addon-promo-container label {
+    padding: 0px 0px 0px 55px !important;
+    margin: 15px 30px 0px 0px !important;
+}
+#order-standard_cart .addon-promo-container strong {
+    margin: 15px 0px 0px 40px !important;
+}
+.custom-arrow::after {
+    left: 45px !important;
+    right: initial !important;
+}
+#scrollingPanelContainer {
+    float: left !important;
+}
+#order-standard_cart .domainsaddionsbox .addon-products .panel-addon .chcktoadd {
+    text-align: right !important;
+}
+#order-standard_cart .domainsaddionsbox .addon-products .panel-addon .chcktoadd span {
+    right: 30px !important;
+}
+.domainsaddionsbox-hosting-add {
+    left: 15px !important;
+    right: initial !important;
+}
+.domainsaddionsbox .domainsaddionsboxtitle {
+    text-align: right !important;
+}
+.box-domainnameservers .box-title {
+    text-align: right !important;
+}
+#order-standard_cart .order-summary .loader {
+    padding-left: 10px;
+    text-align: left !important;
+}
+#order-standard_cart .empty-cart {
+    text-align: left !important;
+    margin: 10px 0px 0 20px !important;
+}
+#order-standard_cart .badge.feat {
+    left: 15px;
+    right: initial;
+}
+#order-standard_cart .view-cart-items .item .item-header:before {
+    left: -60px !important;
+    right: initial !important;
+}
+.mr-65 {
+    margin-left: 65px !important;
+    margin-right: initial;
+}
+.mr-30 {
+    margin-left: 30px !important;
+    margin-right: initial;
+}
+#order-standard_cart .view-cart-items .item-price {
+    text-align: right !important;
+}
+#order-standard_cart .order-summary .btn-continue-shopping {
+    text-align: left !important;
+    display: block !important;
+}
+#order-standard_cart .mc-promo .icon {
+    float: right !important;
+}
+#order-standard_cart .mc-promo .cta {
+    float: left !important;
+    text-align: left !important;
+}
+#order-standard_cart .mc-promo .expander {
+    text-align: right !important;
+    right: 20px !important;
+}
+#order-standard_cart .mc-promo .content {
+    margin-right: 100px !important;
+}
+.mc-promo .header {
+    margin-right: 0px !important;
+}
+#order-standard_cart .mc-promo .body i {
+    padding-left: 3px !important;
+    padding-right: initial !important;
+}
+#order-standard_cart .view-cart-items button.btn-qty {
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 50px !important;
+    border-top-left-radius: 50px !important;
+}
+.quantity-nav {
+    left: 40px;
+}
+#order-standard_cart .view-cart-items .item-qty {
+    text-align: left !important;
+}
+.quantity-button {
+    border-right: 1px solid #eee !important;
+}
+#order-standard_cart .view-cart-items .item-qty input {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-right-radius: 50px !important;
+    border-top-right-radius: 50px !important;
+}
+.fa-chevron-right {
+    -webkit-transform: rotate(180deg) translate(1px, -1px);
+    transform: rotate(180deg) translate(1px, -1px);
+}
+.fas.fa-arrow-right:before {
+    content: "\f060" !important;
+}
+#order-standard_cart .prepend-icon .field {
+    padding-right: 36px;
+}
+.login-claaa-box {
+    text-align: right;
+}
+#containerExistingUserSignin p {
+    text-align: right;
+}
+.activite-logreg-form .circleactive {
+    right: 0;
+}
+.login-claaa-box #containerExistingUserSignin:before {
+    right: 28px;
+}
+.login-claaa-box #containerExistingUserSignin:after {
+    right: 28px;
+}
+.activite-logreg-form {
+    padding-right: 30px;
+}
+.providerPreLinking .social-signin-btns {
+    text-align: right !important;
+}
+.social-signin-btns .btn-facebook {
+    margin-left: 10px;
+}
+.regi-claaa-box {
+    text-align: right;
+}
+.regi-claaa-box #containerNewUserSignup:before {
+    right: 28px;
+}
+.regi-claaa-box #containerNewUserSignup:after {
+    right: 28px;
+}
+#containerNewUserSignup p {
+    text-align: right;
+}
+.intl-tel-input.separate-dial-code .selected-dial-code {
+    padding-right: 28px;
+}
+.intl-tel-input .selected-flag .iti-arrow {
+    left: 6px;
+    right: initial;
+}
+.intl-tel-input .selected-flag .iti-flag {
+    margin-right: 7px;
+}
+.intl-tel-input .country-list .country {
+    text-align: right;
+}
+.intl-tel-input .country-list .country-name, .intl-tel-input .country-list .flag-box {
+    margin-right: 6px;
+}
+.intl-tel-input .country-list .country .dial-code {
+    margin-right: 10px;
+}
+.input-group-btn.show-cc {
+    left: 45px;
+    right: initial;
+}
+#order-standard_cart .checkout-security-msg i {
+    margin-right:  -48px;
+}
+.custom-control-label::after {
+    position: absolute;
+    top: 1px;
+    left: -25px;
+}
+#order-standard_cart .checkout-security-msg {
+    padding-right: 75px;
+}
+.suggested-domains .actions {
+    float: left;
+}
+.domain-promo-box i {
+    right: auto !important;
+    left: 20px !important;
+}
+.domain-pricing .two-row-center {
+    padding-right: 10px;
+    text-align: right;
+}
+.tld-sale-group {
+    margin-right: 6px;
+}
+.domain-renewal .badge.feat {
+    left: 15px;
+    right: initial;
+}
+#domainRenewals .form-horizontal label {
+    text-align: right;
+}
+#order-standard_cart .domain-pricing .row-table-tld-pricing .tld-pricing-header .col-sm-2,
+#order-standard_cart .domain-pricing .row-table-tld-pricing .tld-pricing-header .col-sm-4,
+#order-standard_cart .domain-pricing .row-table-tld-pricing .tld-pricing-header .col-xs-2,
+#order-standard_cart .domain-pricing .row-table-tld-pricing .tld-pricing-header .col-xs-4 {
+    text-align: right;
+}
+.domain-pricing .filtered-row .two-row-center strong {
+    float: right;
+}
+.domain-transfer-container .domain-transfer-bg .badge.feat {
+    left: 15px;
+    right: initial;
+}
+#domainRenewals:before {
+    left: -120px;
+    right: initial;
+}
+#order-standard_cart .plan-content .badge.feat {
+    left: 15px;
+    right: initial;
+}
+#order-standard_cart .product.addons .badge.feat {
+    left: 15px;
+    right: initial;
+}
+.addon-content:before {
+    left: -60px;
+    right: initial;
+}
+
+
+/*------------------------------------------------------------------
+  Responsive RTL
+-------------------------------------------------------------------*/
+@media (max-width: 767px) {
+    #order-standard_cart .view-cart-items .item-qty .btn-group {
+        float: right !important;
+    }
+    #order-standard_cart .view-cart-items .item-header .badge.feat {
+        margin: 0px 0px 20px 10px !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,20 +12,28 @@ jQuery(document).ready(function(){
  * Skype: arslanuddin200911
  * 
  */
-    if(window.location.href.indexOf("confproduct") > -1) {
-        
-    }
+
+ if (window.location.href.indexOf("upgrade.php?type=configoptions") < 0)
+ {
 
     var configoptions = jQuery("[name^=configoption]");
     var customfields = jQuery("[name^=customfield]");
-    jQuery(configoptions[0]).prepend('<option selected hidden>Select Region</option>');
-    jQuery(configoptions[1]).prepend('<option selected hidden>Select CPU Type</option>');
-    jQuery(configoptions[2]).prepend('<option selected hidden>Select Disk Size</option>');
-    jQuery(configoptions[4]).prepend('<option selected hidden>Select OS</option>');
-    jQuery(configoptions[5]).prepend('<option selected hidden>Select Bandwidth</option>');
-    jQuery(configoptions[3]).prepend('<option selected hidden>Select RAM (MBs)</option>');
+    //console.log(localStorage.getItem("coperation"));
+    if (jQuery(".product-title").text().includes("Kametera"))
+    {
+        jQuery(configoptions[0]).prepend('<option selected hidden>Select Region</option>');
+        jQuery(configoptions[1]).prepend('<option selected hidden>Select CPU Type</option>');
+        jQuery(configoptions[2]).prepend('<option selected hidden>Select Disk Size</option>');
+        jQuery(configoptions[4]).prepend('<option selected hidden>Select OS</option>');
+        jQuery(configoptions[5]).prepend('<option selected hidden>Select Bandwidth</option>');
+        jQuery(configoptions[3]).prepend('<option selected hidden>Select RAM (MBs)</option>');
+    }
 
-
+    var title = jQuery(".prod-info-abso").children().first().next().text();
+    if (title.includes("Kametera"))
+    {
+        jQuery("#domain").children().first().next().next().hide();
+    }
     for (var i = 3 ; i < 6 ; i++)
     {
         jQuery(configoptions[i]).children().each(function() {
@@ -132,7 +140,7 @@ jQuery(document).ready(function(){
     });
     
     jQuery("#fullpage-overlay").remove();
-    console.log(localStorage.getItem("type"));
+    //console.log(localStorage.getItem("type"));
     if (localStorage.getItem("type") == "clone")
     {
         if(window.location.href.indexOf("confproduct") > -1) {
@@ -148,11 +156,11 @@ jQuery(document).ready(function(){
         jQuery(customfields[0]).attr('readonly', true);
 
 
-        console.log(localStorage.getItem("datacenter"));
-        console.log(localStorage.getItem("cpu"));
-        console.log(localStorage.getItem("ram"));
-        console.log(localStorage.getItem("traffic"));
-        console.log(localStorage.getItem("serverid"));
+        //console.log(localStorage.getItem("datacenter"));
+        //console.log(localStorage.getItem("cpu"));
+        //console.log(localStorage.getItem("ram"));
+        //console.log(localStorage.getItem("traffic"));
+        //console.log(localStorage.getItem("serverid"));
         if (localStorage.getItem("datacenter") !== null)
         {
             jQuery("#" + jQuery(configoptions[0]).attr("id") + " option:contains('" + localStorage.getItem("datacenter") + "')").prop("selected","selected");
@@ -265,7 +273,7 @@ jQuery(document).ready(function(){
     }
     else
     {
-        console.log(customfields.length);
+        //console.log(customfields.length);
         if (customfields.length > 1)
         {
             jQuery(customfields[0]).val("");
@@ -304,17 +312,28 @@ jQuery(document).ready(function(){
     jQuery("#inputHostname").parent().parent().append('<button type="button" id="generateP" class="btn btn-default btn-sm btn-sm-block generate-password" data-targetfields="inputRootpw,">Generate Password</button>');
 
     jQuery("#generateP").on("click", function(){
-        jQuery("body").append('<div class="modal-backdrop fade show"></div>');
+        jQuery("body").append('<div class="modal-backdrop fade in"></div>');
         jQuery("body").addClass("modal-open");
-        jQuery("#modalGeneratePassword").addClass("fade show");
+        jQuery("#modalGeneratePassword").addClass("fade in");
         jQuery("#modalGeneratePassword").css("display", "block");
-        jQuery("#modalGeneratePassword").attr("aria-modal", "true");
-        jQuery("#modalGeneratePassword").attr("role", "dialog");
+        jQuery("#modalGeneratePassword").css("padding-left", "0");
+        // jQuery("#modalGeneratePassword").attr("aria-modal", "true");
+        // jQuery("#modalGeneratePassword").attr("role", "dialog");
         
     })
-    console.log(jQuery("#modalGeneratePassword").children().children().children().last().children().first());
+    //console.log(jQuery("#modalGeneratePassword").children().children().children().last().children().first());
+    //console.log(jQuery("#inputNs1prefix").prev());
+    jQuery("#inputNs1prefix").prev().hide();
+    jQuery("#inputNs2prefix").prev().hide();
+    jQuery("#inputNs1prefix").removeAttr("type");
+    jQuery("#inputNs2prefix").removeAttr("type");
+    jQuery("#inputNs1prefix").attr("type", "hidden");
+    jQuery("#inputNs2prefix").attr("type", "hidden");
+    jQuery("#inputNs1prefix").attr("value", "ns1");
+    jQuery("#inputNs2prefix").attr("value", "ns2");
+
     jQuery("#modalGeneratePassword").children().children().children().last().children().first().on('click', function(){
-        jQuery("body").append('<div class="modal-backdrop fade show"></div>');
+        jQuery("body").append('<div class="modal-backdrop fade in"></div>');
         jQuery("body").removeClass("modal-open");
         jQuery(".modal-backdrop").remove();
         jQuery("#modalGeneratePassword").removeClass("fade show");
@@ -324,10 +343,10 @@ jQuery(document).ready(function(){
 
     })
     if(window.location.href.indexOf("confproduct") > -1) {
-        window.langPasswordStrength = "{lang key='pwstrength'}";
-        window.langPasswordWeak = "{lang key='pwstrengthweak'}";
-        window.langPasswordModerate = "{lang key='pwstrengthmoderate'}";
-        window.langPasswordStrong = "{lang key='pwstrengthstrong'}";
+        window.langPasswordStrength = "Password Strength";
+        window.langPasswordWeak = "Weak";
+        window.langPasswordModerate = "Moderate";
+        window.langPasswordStrong = "Strong";
         jQuery(document).ready(function() {
             jQuery("#inputRootpw").keyup(registerFormPasswordStrengthFeedback);
         });
@@ -335,19 +354,19 @@ jQuery(document).ready(function(){
         jQuery('#btnGeneratePasswordInsert')
         .click(WHMCS.ui.clipboard.copy)
         .click(function(e) {
-            jQuery(this).closest('.modal').modal('hide');
+            jQuery(this).closest('.modal').modal('out');
                 var generatedPassword = jQuery('#inputGeneratePasswordOutput');
                 jQuery('#inputRootpw').val(generatedPassword.val())
                 .trigger('keyup');
             // Remove the generated password.
             generatedPassword.val('');
-            jQuery("body").append('<div class="modal-backdrop fade show"></div>');
+            jQuery("body").append('<div class="modal-backdrop fade in"></div>');
             jQuery("body").removeClass("modal-open");
             jQuery(".modal-backdrop").remove();
-            jQuery("#modalGeneratePassword").removeClass("fade show");
+            jQuery("#modalGeneratePassword").removeClass("fade in");
             jQuery("#modalGeneratePassword").css("display", "");
-            jQuery("#modalGeneratePassword").removeAttr("aria-modal", "true");
-            jQuery("#modalGeneratePassword").removeAttr("role", "dialog");
+            // jQuery("#modalGeneratePassword").removeAttr("aria-modal", "true");
+            // jQuery("#modalGeneratePassword").removeAttr("role", "dialog");
         });            
     }
     // jQuery("#inputRootpw").keyup(function () {
@@ -370,7 +389,7 @@ jQuery(document).ready(function(){
     //     jQuery("#pwstrengthpos").css("width",pwstrength);
     //     jQuery("#pwstrengthneg").css("width",100-pwstrength);
     // });
-    
+}
 })
 
 function registerFormPasswordStrengthFeedback()

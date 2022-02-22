@@ -14,6 +14,10 @@
  */
 use WHMCS\Database\Capsule;
 use WHMCS\View\Menu\Item as MenuItem;
+require_once __DIR__ . '/../../../init.php';
+require_once 'kametera.php';
+
+
 // Require any libraries needed for the module to function.
 // require_once __DIR__ . '/path/to/library/loader.php';
 //
@@ -72,9 +76,6 @@ add_hook('ClientAreaPrimaryNavbar', 1, function ($menu)
 });
 add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
 {
-//    if (!is_null($primarySidebar->getChild('Service Details Overview'))) {
-//             $primarySidebar->removeChild('Service Details Overview');
-//    }
    if (!is_null($primarySidebar->getChild('Service Details Actions'))) {
             $primarySidebar->getChild('Service Details Actions')->removeChild('Upgrade/Downgrade Options');
             $primarySidebar->getChild('Service Details Actions')->removeChild('Custom Module Button SS Create');
@@ -90,6 +91,7 @@ add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
         }    
 
 });
+
 /**
  * Render a custom sidebar panel in the secondary sidebar.
  *
@@ -148,8 +150,11 @@ add_hook('AdminProductConfigFieldsSave', 1, function($vars) {
         $gid = kametera_productConfigGetID();
 
         //Call the service's connection test function.
-        $clientId = "71593d693646c8bc2353bdca5fd41121";
-        $secret = "1b186c2059445013a934fac97a3bf851";
+        $conn = file_get_contents(dirname(__FILE__) .'/storage/connection'); 
+        $server = json_decode($conn);
+        
+        $clientId = $server->clientId;
+        $secret = $server->secret;
         $serverhostname = "console.kamatera.com";
     
     
@@ -280,93 +285,107 @@ add_hook('AdminProductConfigFieldsSave', 1, function($vars) {
 
 });
 
-add_hook('AdminAreaFooterOutput', 1, function($vars) {
+// add_hook('AdminAreaFooterOutput', 1, function($vars) {
 
-    return <<<HTML
-<script type="text/javascript">
+//     return <<<HTML
+// <script type="text/javascript">
 
-    function form(){
-        $("#divModuleSettings").removeClass("hidden");
-        $("#kameconfig").next().removeClass("hidden");
-        $("#kameconfig").removeClass("hidden");
-    }
-    $(document).ready(function(){
-        if ($("#inputServerGroup").find("option:selected").text().toLowerCase() == "kametera")
-        {
-            $('<div class="text-center" id="kameconfig"><button class="btn btn-success">Add Configurable Options</button></div><br/>').insertAfter('#divModuleSettings');
-            form();
-        }
-        else
-        {
-            $('<div class="text-center" id="kameconfig"><button class="btn btn-success">Add Configurable Options</button></div><br/>').insertAfter('#divModuleSettings');
-            $("#divModuleSettings").addClass("hidden");
-            $("#kameconfig").next().addClass("hidden");
-            $("#kameconfig").addClass("hidden");
-        }
+//     function form(){
+//         $("#divModuleSettings").removeClass("hidden");
+//         $("#kameconfig").next().removeClass("hidden");
+//         $("#kameconfig").removeClass("hidden");
+//     }
+//     $(document).ready(function(){
+//         if ($("#inputServerGroup").find("option:selected").text().toLowerCase() == "kametera")
+//         {
+//             $('<div class="text-center" id="kameconfig"><button class="btn btn-success">Add Configurable Options</button></div><br/>').insertAfter('#divModuleSettings');
+//             form();
+//         }
+//         else
+//         {
+//             $('<div class="text-center" id="kameconfig"><button class="btn btn-success">Add Configurable Options</button></div><br/>').insertAfter('#divModuleSettings');
+//             $("#divModuleSettings").addClass("hidden");
+//             $("#kameconfig").next().addClass("hidden");
+//             $("#kameconfig").addClass("hidden");
+//         }
 
-        $("#inputServerGroup").change(function(){
-            if ($(this).find("option:selected").text().toLowerCase() == "kametera")
-            {
-               form();
-            }
-            else
-            {
-                $("#divModuleSettings").addClass("hidden");
-                $("#kameconfig").next().addClass("hidden");
-                $("#kameconfig").addClass("hidden");
-            }
-        })
-        $("#kameconfig>button").click(function(){
-            alert("OK");
-        })
-    });
+//         $("#inputServerGroup").change(function(){
+//             if ($(this).find("option:selected").text().toLowerCase() == "kametera")
+//             {
+//                form();
+//             }
+//             else
+//             {
+//                 $("#divModuleSettings").addClass("hidden");
+//                 $("#kameconfig").next().addClass("hidden");
+//                 $("#kameconfig").addClass("hidden");
+//             }
+//         })
+//         $("#kameconfig>button").click(function(){
+//             alert("OK");
+//         })
+//     });
    
-</script>
-HTML;
-});
+// </script>
+// HTML;
+// });
 
 add_hook('ClientAreaProductDetailsOutput', 1, function($service) {
-    logModuleCall(
-        'kametera',
-        __FUNCTION__,
-        $service["service"]["id"],
-        "",
-        ""
-    );
+    // $command = 'DecryptPassword';
+    // $postData = array(
+    //     'password2' => $service["service"]["password"],
+    // );
+    
+    // $results = localAPI($command, $postData);
 
-    if (isset($service["service"]["subscriptionid"]))
-    {
-            if ($service["service"]["subscriptionid"] != "")
-            {
-                $clientId = "71593d693646c8bc2353bdca5fd41121";
-                $secret = "1b186c2059445013a934fac97a3bf851";
-                $status = kametera_powerStatus($clientId, $secret, $service["service"]["subscriptionid"]);
-                $badge = "";
-                if ($status == "on")
-                {
-                    $badge = 'Server Power Status <div class="badge badge-success">' . $status . '</div>';
-                }
-                else
-                {
-                    $badge = 'Server Power Status <div class="badge badge-danger">' . $status . '</div>';
-                }
-                return '<div class="card"><div class="card-body"><div class="row"><div class="col-md-12 text-center" style="magin: 0 auto;">' . $badge . '</div></div></div>';    
-            } 
-    }
-    else
-    {
-        $badge = 'Server Power Status <div class="badge badge-warning">Getting your server ready. It may take upto 10 minutes.</div>';
-        return '<div class="card"><div class="card-body"><div class="row"><div class="col-md-12 text-center" style="magin: 0 auto;">' . $badge . '</div></div></div>';    
-    }
+    // if (isset($service["service"]["subscriptionid"]))
+    // {
+    //         if ($service["service"]["subscriptionid"] != "")
+    //         {
+    //             $conn = file_get_contents(dirname(__FILE__) .'/storage/connection'); 
+    //             $server = json_decode($conn);
+                
+    //             $clientId = $server->clientId;
+    //             $secret = $server->secret;
+    //             $status = kametera_powerStatus($clientId, $secret, $service["service"]["subscriptionid"]);
+    //             $badge = "";
+    //             if ($status == "on")
+    //             {
+    //                 $badge = 'Server Power Status <div class="badge badge-success" style="background-color: #4caf50">' . $status . '</div>';
+    //             }
+    //             else
+    //             {
+    //                 $badge = 'Server Power Status <div class="badge badge-danger" style="background-color: red">' . $status . '</div>';
+    //             }
+    //             return '<div class="card"><div class="card-body"><div class="row"><div class="col-md-12 text-center" style="magin: 0 auto;"><div class="alert alert-info text-center">' . $badge . '</div></div></div></div></div>';
+    //                     // . '<div class="card"><div class="card-body"><div class="row alert alert-info text-center" style="margin: 30px 0;"><h4 class="text-center">Server Login Credentials</h4><hr><div class="col-sm-6 text-right"><strong>Username:</strong></div><div class="col-sm-6 text-left">root</div><div class="col-sm-6 text-right"><strong>Password:</strong></div><div class="col-sm-6 text-left">' . $results["password"] . ' </div></div></div></div></div>';
+    //             } 
+    // }
+    // else
+    // {
+    //     $badge = 'Server Power Status <div class="badge badge-warning">Getting your server ready. It may take upto 10 minutes.</div>';
+    //     return '<div class="card"><div class="card-body"><div class="row"><div class="col-md-12 text-center" style="magin: 0 auto;"><div class="alert alert-info text-center">' . $badge . '</div></div></div></div>';    
+    // }
 });
 add_hook('ClientAreaPageCart', 1, function($vars) {
 
 });
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 add_hook('ClientAreaHeadOutput', 1, function($vars) {
+$version = generateRandomString(rand(5,20));
     return <<<HTML
-<script type="text/javascript" src="assets/js/kametera.js"></script>
+        <script type="text/javascript" src="assets/js/kametera.js?v={$version}"></script>
+        <script type="text/javascript" src="modules/servers/kametera/assets/js/kametera.js?v={$version}"></script>
+        <link rel="stylesheet" href="modules/servers/kametera/assets/css/kametera.css?v={$version}">
 HTML;
-
 });
 // add_hook('PreModuleProvisionAddOnFeature', 1, function($vars) {
 //     logModuleCall(

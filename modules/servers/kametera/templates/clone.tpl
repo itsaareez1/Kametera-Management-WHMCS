@@ -3,6 +3,9 @@
         <h3 class="card-title">Create Clone Server</h3>
         <div style="color: red;">A server with same specifications and resources will be created.</div>
         <hr>
+        <a class="btn btn-default" href="clientarea.php?action=productdetails&id={$serviceid}">
+            Back
+        </a>
         <a class="btn btn-primary" href={$url}>Proceed</a>
     </div>
 </div>

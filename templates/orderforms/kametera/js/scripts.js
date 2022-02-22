@@ -1,15 +1,10 @@
-/**
- * 
- * Name: Kamtera Management Plugin for WHMCS
- * Version: v1.0.0
- * Description: This plugin connects WHMCS with Kametera, a cloud service provider, and automates all processes.
- * Developed by Arslan ud Din Shafiq
- * Websoft IT Development Solutions (Private) Limited, Pakistan.
- * WhatsApp: +923041280395
- * WeChat: +923041280395
- * Email: itsaareez1@gmail.com
- * Skype: arslanuddin200911
- * 
+/*!
+ * iCheck v1.0.3, http://git.io/arlzeA
+ * ===================================
+ * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
+ *
+ * (c) 2013 Damir Sultanov, http://fronteed.com
+ * MIT Licensed
  */
 
 (function($) {
